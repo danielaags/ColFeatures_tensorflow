@@ -1,0 +1,7 @@
+pip install tensorflow
+pip install -U scikit-learn
+pip install scikit-image
+python -m pip install -U matplotlib
+pip install opencv-python
+pip install tensorflow-io
+pip install imagecodecs
