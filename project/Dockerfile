@@ -1,16 +1,18 @@
-FROM continuumio/miniconda3:4.10.3p1
+FROM python:3.7
+
 WORKDIR /project
-RUN conda install \
-    tensorflow \
-    tensorflow-io \
-    scikit-learn \
-    scikit-image \
-    opencv-python \
-    imagecodecs \
-    matplotlib \
-    jupyterlab
-COPY ./README.md /project
-COPY ./dataTraining /project/dataTraining
-COPY ./notebooks /project/notebooks
-COPY ./utils /project/utils
-CMD ["jupyter-lab","--ip=0.0.0.0","--no-browser","--allow-root"]
+
+COPY requirements.txt project/requirements.txt
+COPY dataTraining /project/dataTraining
+COPY notebooks /project/notebooks
+COPY utils /project/utils
+
+RUN python -m pip install numpy
+RUN python -m pip install matplotlib
+RUN python -m pip install tensorflow
+RUN python -m pip install tensorflow-io
+RUN python -m pip install scikit-learn
+RUN python -m pip install scikit-image
+RUN python -m pip install opencv-python-headless
+RUN python -m pip install imagecodecs
+RUN python -m pip install jupyterlab
